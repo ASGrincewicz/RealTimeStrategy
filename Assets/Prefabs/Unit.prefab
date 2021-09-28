@@ -112,6 +112,36 @@ Transform:
   m_Father: {fileID: 2973541618542914819}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7791588871755134232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6820721691365252413}
+  m_Layer: 0
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6820721691365252413
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7791588871755134232}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.066, y: 1.55, z: 2.602}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2973541618542914819}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8714611300602994266
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +154,7 @@ GameObject:
   - component: {fileID: 3314651661255688696}
   - component: {fileID: 5260263823021498027}
   - component: {fileID: 1758614055224761309}
+  - component: {fileID: 6718938398279049408}
   - component: {fileID: 8766667443919355076}
   - component: {fileID: 5979728953946064867}
   - component: {fileID: 2009991294615099085}
@@ -151,6 +182,7 @@ Transform:
   - {fileID: 6723547930145194884}
   - {fileID: 3140158141370883178}
   - {fileID: 1840453657504231825}
+  - {fileID: 6820721691365252413}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -170,7 +202,7 @@ MonoBehaviour:
   syncInterval: 0.1
   _navMeshAgent: {fileID: 7592391634065920818}
   _targeter: {fileID: 5979728953946064867}
-  _chaseRange: 10
+  _chaseRange: 20
 --- !u!114 &5260263823021498027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +264,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6718938398279049408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8714611300602994266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57d0cb93156f4d4fad6da5c034b0007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  _targeter: {fileID: 5979728953946064867}
+  _projectilePrefab: {fileID: 7297902120739555065, guid: b022f14ebefcb4420bda75a313b9c66b, type: 3}
+  _projectileSpawnPoint: {fileID: 6820721691365252413}
+  _fireRange: 15
+  _fireRate: 2
+  _rotationSpeed: 100
 --- !u!114 &8766667443919355076
 MonoBehaviour:
   m_ObjectHideFlags: 0

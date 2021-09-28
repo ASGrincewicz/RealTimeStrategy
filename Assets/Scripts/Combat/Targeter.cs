@@ -5,7 +5,7 @@ using Mirror;
 
 public class Targeter : NetworkBehaviour
 {
-     private Targetable _target;
+    private Targetable _target;
     public Targetable GetTarget() { return _target; }
     #region Server
     [Command]
@@ -17,9 +17,6 @@ public class Targeter : NetworkBehaviour
     }
 
     [Server]
-    public void ClearTarget()
-    {
-        _target = null;
-    }
+    public void ClearTarget() => _target = null;
     #endregion
 }
