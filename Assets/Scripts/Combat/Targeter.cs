@@ -5,7 +5,8 @@ using Mirror;
 
 public class Targeter : NetworkBehaviour
 {
-    private Targetable _target;
+     private Targetable _target;
+    public Targetable GetTarget() { return _target; }
     #region Server
     [Command]
     public void CmdSetTarget(GameObject targetGameObject)
@@ -20,7 +21,5 @@ public class Targeter : NetworkBehaviour
     {
         _target = null;
     }
-    #endregion
-    #region Client
     #endregion
 }
