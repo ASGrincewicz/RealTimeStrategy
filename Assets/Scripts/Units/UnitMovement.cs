@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class UnitMovement : NetworkBehaviour
 {
     [SerializeField] private NavMeshAgent _navMeshAgent;
+    [SerializeField] private Targeter _targeter;
 
     #region Server
     [ServerCallback]
@@ -22,6 +23,8 @@ public class UnitMovement : NetworkBehaviour
         if (!NavMesh.SamplePosition(position, out NavMeshHit hit, 1f, NavMesh.AllAreas)) return;
 
         _navMeshAgent.SetDestination(hit.position);
+
+        _targeter.ClearTarget();
 
     }
     #endregion
