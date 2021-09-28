@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 5260263823021498027}
   - component: {fileID: 1758614055224761309}
   - component: {fileID: 6718938398279049408}
+  - component: {fileID: -4444603347800228331}
   - component: {fileID: 8766667443919355076}
   - component: {fileID: 5979728953946064867}
   - component: {fileID: 2009991294615099085}
@@ -202,7 +203,7 @@ MonoBehaviour:
   syncInterval: 0.1
   _navMeshAgent: {fileID: 7592391634065920818}
   _targeter: {fileID: 5979728953946064867}
-  _chaseRange: 20
+  _chaseRange: 15
 --- !u!114 &5260263823021498027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,9 +282,24 @@ MonoBehaviour:
   _targeter: {fileID: 5979728953946064867}
   _projectilePrefab: {fileID: 7297902120739555065, guid: b022f14ebefcb4420bda75a313b9c66b, type: 3}
   _projectileSpawnPoint: {fileID: 6820721691365252413}
-  _fireRange: 15
-  _fireRate: 2
+  _fireRange: 10
+  _fireRate: 3
   _rotationSpeed: 100
+--- !u!114 &-4444603347800228331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8714611300602994266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04070630c818947f3a6be601b5e267fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  _maxHealth: 100
 --- !u!114 &8766667443919355076
 MonoBehaviour:
   m_ObjectHideFlags: 0
