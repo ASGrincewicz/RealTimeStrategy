@@ -15,31 +15,36 @@ public class UnitSelectionHandler : MonoBehaviour
     private List<Unit> _selectedUnits = new List<Unit>();
 
     public List<Unit> SelectedUnits { get => _selectedUnits; }
-    
+
 
     private void Start()
     {
         _mainCamera = Camera.main;
 
-       // _player = NetworkClient.connection.identity.GetComponent<NetworkedPlayer>();
+        Unit.AuthorityOnUnitDespawned += AuthorityHandleUnitDespawned;
+    }
+
+    private void OnDestroy()
+    {
+        Unit.AuthorityOnUnitDespawned -= AuthorityHandleUnitDespawned;
     }
 
     private void Update()
     {
-        if(_player == null)
+        if (_player == null)
         {
             _player = NetworkClient.connection.identity.GetComponent<NetworkedPlayer>();
         }
 
-        if(Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             StartSelectionArea();
         }
-        else if(Mouse.current.leftButton.wasReleasedThisFrame)
+        else if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
             ClearSelectionArea();
         }
-        else if(Mouse.current.leftButton.isPressed)
+        else if (Mouse.current.leftButton.isPressed)
         {
             UpdateSelectionArea();
         }
@@ -47,7 +52,7 @@ public class UnitSelectionHandler : MonoBehaviour
     private void StartSelectionArea()
     {
 
-        if(!Keyboard.current.leftShiftKey.isPressed)
+        if (!Keyboard.current.leftShiftKey.isPressed)
         {
             foreach (Unit selectedUnit in _selectedUnits)
             {
@@ -101,13 +106,13 @@ public class UnitSelectionHandler : MonoBehaviour
         Vector2 min = _unitSelectionArea.anchoredPosition - (_unitSelectionArea.sizeDelta / 2);
         Vector2 max = _unitSelectionArea.anchoredPosition + (_unitSelectionArea.sizeDelta / 2);
 
-        foreach(Unit unit in _player.GetMyUnits())
+        foreach (Unit unit in _player.GetMyUnits())
         {
             if (SelectedUnits.Contains(unit)) continue;
 
             Vector3 screenPosition = _mainCamera.WorldToScreenPoint(unit.transform.position);
 
-            if(screenPosition.x > min.x &&
+            if (screenPosition.x > min.x &&
                 screenPosition.x < max.x &&
                 screenPosition.y > min.y &&
                 screenPosition.y < max.y)
@@ -117,5 +122,9 @@ public class UnitSelectionHandler : MonoBehaviour
                 unit.Select();
             }
         }
+    }
+    private void AuthorityHandleUnitDespawned(Unit unit)
+    {
+        SelectedUnits.Remove(unit);
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public class Unit : NetworkBehaviour
 {
+    [SerializeField] private Health _health = null;
     [SerializeField] private Targeter _targeter = null;
     [SerializeField] private UnitMovement _unitMovement = null;
     [SerializeField] private UnityEvent onSelected = null;
@@ -22,21 +23,33 @@ public class Unit : NetworkBehaviour
     public Targeter GetTargeter() { return _targeter; }
 
     #region Server
-    public override void OnStartServer() => ServerOnUnitSpawned?.Invoke(this);
+    public override void OnStartServer()
+    {
+        ServerOnUnitSpawned?.Invoke(this);
+        _health.ServerOnDie += ServerHandleDie;
+    }
 
-    public override void OnStopServer() => ServerOnUnitDespawned?.Invoke(this);
+    public override void OnStopServer()
+    {
+        ServerOnUnitDespawned?.Invoke(this);
+        _health.ServerOnDie -= ServerHandleDie;
+    }
+
+    [Server]
+    private void ServerHandleDie()
+    {
+        NetworkServer.Destroy(gameObject);
+    }
     #endregion
 
     #region Client
-    public override void OnStartClient()
+    public override void OnStartAuthority()
     {
-        if (!isClientOnly || !hasAuthority) return;
-
         AuthorityOnUnitSpawned?.Invoke(this);
     }
     public override void OnStopClient()
     {
-        if (!isClientOnly || !hasAuthority) return;
+        if (!hasAuthority) return;
        
         AuthorityOnUnitDespawned?.Invoke(this);
     }
