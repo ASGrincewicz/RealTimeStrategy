@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
-public class PlayerMovement : NetworkBehaviour
+public class UnitMovement : NetworkBehaviour
 {
     [SerializeField] private NavMeshAgent _navMeshAgent;
 
@@ -30,9 +31,9 @@ public class PlayerMovement : NetworkBehaviour
     {
         if (!hasAuthority) return;
 
-        if (!Input.GetMouseButtonDown(1)) return;
+        if (!Mouse.current.rightButton.wasPressedThisFrame) return;
 
-        Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = _mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity)) return;
 
