@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public class Unit : NetworkBehaviour
 {
+    [SerializeField] private Targeter _targeter = null;
     [SerializeField] private UnitMovement _unitMovement = null;
     [SerializeField] private UnityEvent onSelected = null;
     [SerializeField] private UnityEvent onDeselected = null;
@@ -18,6 +19,7 @@ public class Unit : NetworkBehaviour
     public static event Action<Unit> AuthorityOnUnitDespawned;
 
     public UnitMovement GetUnitMovement() { return _unitMovement; }
+    public Targeter GetTargeter() { return _targeter; }
 
     #region Server
     public override void OnStartServer()
