@@ -170,6 +170,7 @@ MonoBehaviour:
   syncInterval: 0.1
   _navMeshAgent: {fileID: 7592391634065920818}
   _targeter: {fileID: 5979728953946064867}
+  _chaseRange: 10
 --- !u!114 &5260263823021498027
 MonoBehaviour:
   m_ObjectHideFlags: 0
