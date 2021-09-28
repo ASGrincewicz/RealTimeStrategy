@@ -22,14 +22,9 @@ public class Unit : NetworkBehaviour
     public Targeter GetTargeter() { return _targeter; }
 
     #region Server
-    public override void OnStartServer()
-    {
-        ServerOnUnitSpawned?.Invoke(this);
-    }
-    public override void OnStopServer()
-    {
-        ServerOnUnitDespawned?.Invoke(this);
-    }
+    public override void OnStartServer() => ServerOnUnitSpawned?.Invoke(this);
+
+    public override void OnStopServer() => ServerOnUnitDespawned?.Invoke(this);
     #endregion
 
     #region Client
