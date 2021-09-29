@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +7,7 @@ public class RTSNetworkManager : NetworkManager
     [SerializeField] private GameObject _unitSpawnerPrefab = null;
     [SerializeField] private GameOverHandler _gameOverHandlerPrefab = null;
 
+    #region Server
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
         base.OnServerAddPlayer(conn);
@@ -22,11 +21,13 @@ public class RTSNetworkManager : NetworkManager
 
     public override void OnServerChangeScene(string newSceneName)
     {
-        if(SceneManager.GetActiveScene().name.StartsWith("Map_01"))
+        if (SceneManager.GetActiveScene().buildIndex.Equals(1))
         {
             GameOverHandler gameOverHandlerInstance = Instantiate(_gameOverHandlerPrefab);
 
             NetworkServer.Spawn(gameOverHandlerInstance.gameObject);
         }
     }
+    #endregion
+    
 }
