@@ -14,12 +14,11 @@ public class NetworkedPlayer : NetworkBehaviour
 
     private List<Unit> _myUnits = new List<Unit>();
     private List<Building> _myBuildings = new List<Building>();
-    
+    private Color _teamColor = new Color();
     public List<Unit> GetMyUnits() { return _myUnits; }
     public List<Building> GetMyBuildings() { return _myBuildings; }
     public int GetResources() { return _myResources; }
-    [Server]
-    public void SetResources(int newResources) => _myResources = newResources;
+    public Color GetTeamColor() { return _teamColor; }
 
     public bool CanPlaceBuilding(BoxCollider buildingCollider, Vector3 position)
     {
@@ -53,6 +52,13 @@ public class NetworkedPlayer : NetworkBehaviour
         Building.ServerOnBuildingSpawned -= ServerHandleBuildingSpawned;
         Building.ServerOnBuildingDespawned -= ServerHandleBuildingDespawned;
     }
+
+    [Server]
+    public void SetResources(int newResources) => _myResources = newResources;
+
+    [Server]
+    public void SetTeamColor(Color newColor) => _teamColor = newColor;
+
     [Command]
     public void CmdTryPlaceBuilding(int buildingID, Vector3 position)
     {
