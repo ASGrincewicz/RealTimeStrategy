@@ -6,6 +6,7 @@ public class NetworkedPlayer : NetworkBehaviour
 {
     [SerializeField] private List<Unit> _myUnits = new List<Unit>();
     [SerializeField] private List<Building> _myBuildings = new List<Building>();
+    [SerializeField] private Building[] _buildings = new Building[0];
     public List<Unit> GetMyUnits() { return _myUnits; }
     public List<Building> GetMyBuildings() { return _myBuildings; }
 
@@ -24,6 +25,25 @@ public class NetworkedPlayer : NetworkBehaviour
         Unit.ServerOnUnitDespawned -= ServerHandleUnitDespawned;
         Building.ServerOnBuildingSpawned -= ServerHandleBuildingSpawned;
         Building.ServerOnBuildingDespawned -= ServerHandleBuildingDespawned;
+    }
+    [Command]
+    public void CmdTryPlaceBuilding(int buildingID, Vector3 position)
+    {
+        Building buildingToPlace = null;
+
+        foreach(var building in _buildings)
+        {
+            if(building.GetID()== buildingID)
+            {
+                buildingToPlace = building;
+                break;
+            }
+        }
+        if (buildingToPlace == null) return;
+
+       GameObject buildingInstance = Instantiate(buildingToPlace.gameObject, position, buildingToPlace.transform.rotation);
+
+        NetworkServer.Spawn(buildingInstance, connectionToClient);
     }
 
     private void ServerHandleUnitSpawned(Unit unit)

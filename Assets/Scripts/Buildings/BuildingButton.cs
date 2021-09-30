@@ -57,7 +57,7 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
         if(Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _floorMask))
         {
-            //Place Building
+            _player.CmdTryPlaceBuilding(_building.GetID(), hit.point);
         }
 
         Destroy(_buildingPreviewInstance);
