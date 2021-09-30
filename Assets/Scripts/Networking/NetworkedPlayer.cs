@@ -5,18 +5,38 @@ using UnityEngine;
 
 public class NetworkedPlayer : NetworkBehaviour
 {
+    [SerializeField] private Building[] _buildings = new Building[0];
+    [SerializeField] private LayerMask _buildingBlockMask = new LayerMask();
+    [SerializeField] private float _buildingRangeLimit = 5f;
     [SyncVar(hook = nameof(ClientHandleResourcesUpdated))]
     private int _myResources = 500;
     public event Action<int> ClientOnResourcesUpdated;
 
     private List<Unit> _myUnits = new List<Unit>();
     private List<Building> _myBuildings = new List<Building>();
-    [SerializeField] private Building[] _buildings = new Building[0];
+    
     public List<Unit> GetMyUnits() { return _myUnits; }
     public List<Building> GetMyBuildings() { return _myBuildings; }
     public int GetResources() { return _myResources; }
     [Server]
     public void SetResources(int newResources) => _myResources = newResources;
+
+    public bool CanPlaceBuilding(BoxCollider buildingCollider, Vector3 position)
+    {
+        if (Physics.CheckBox(position + buildingCollider.center,
+                        buildingCollider.size / 2,
+                        Quaternion.identity,
+                        _buildingBlockMask)) return false;
+
+        foreach (var building in _myBuildings)
+        {
+            if ((position - building.transform.position).sqrMagnitude <= _buildingRangeLimit * _buildingRangeLimit)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     #region Server
     public override void OnStartServer()
     {
@@ -48,9 +68,19 @@ public class NetworkedPlayer : NetworkBehaviour
         }
         if (buildingToPlace == null) return;
 
-       GameObject buildingInstance = Instantiate(buildingToPlace.gameObject, position, buildingToPlace.transform.rotation);
+        if (_myResources < buildingToPlace.GetPrice()) return;
+
+        var buildingCollider = buildingToPlace.GetComponent<BoxCollider>();
+
+        
+        if (!CanPlaceBuilding(buildingCollider, position)) return;
+
+
+       var buildingInstance = Instantiate(buildingToPlace.gameObject, position, buildingToPlace.transform.rotation);
 
         NetworkServer.Spawn(buildingInstance, connectionToClient);
+
+        SetResources(_myResources - buildingToPlace.GetPrice());
     }
 
     private void ServerHandleUnitSpawned(Unit unit)
