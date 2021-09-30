@@ -15,6 +15,7 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     [SerializeField] private LayerMask _floorMask;
 
     private Camera _mainCamera = null;
+    [SerializeField] private BoxCollider _buildingCollider = null;
     private NetworkedPlayer _player = null;
     private GameObject _buildingPreviewInstance = null;
     private Renderer _buildingRendererInstance = null;
@@ -22,6 +23,7 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     private void Start()
     {
         _mainCamera = Camera.main;
+        _buildingCollider = _building.GetComponent<BoxCollider>();
         _icon.sprite = _building.GetIcon();
         _priceText.text = $"{_building.GetPrice()}";
     }
@@ -41,6 +43,8 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public void OnPointerDown(PointerEventData eventData)
     {
         if (eventData.button != PointerEventData.InputButton.Left) return;
+
+        if (_player.GetResources() < _building.GetPrice()) return;
 
         _buildingPreviewInstance = Instantiate(_building.GetBuildingPreview());
 
@@ -75,5 +79,9 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         {
             _buildingPreviewInstance.SetActive(true);
         }
+
+        var color = _player.CanPlaceBuilding(_buildingCollider, hit.point) ? Color.green : Color.red;
+
+        _buildingRendererInstance.material.SetColor("_BaseColor", color);
     }
 }
