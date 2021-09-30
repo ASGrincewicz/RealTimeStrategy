@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3140158141370883178}
   - component: {fileID: 121963451946331090}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SelectedSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1840453657504231825}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AimAtPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6820721691365252413}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ProjectileSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 5257822640121296227}
   - component: {fileID: 7592391634065920818}
   - component: {fileID: 8490045035249368465}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,17 +435,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2973541618542914819}
     m_Modifications:
-    - target: {fileID: 134676642788410972, guid: 04d3665dff27b49068d78b1bd2536173, type: 3}
-      propertyPath: _health
-      value: 
-      objectReference: {fileID: -4444603347800228331}
     - target: {fileID: 9197419732321532097, guid: 04d3665dff27b49068d78b1bd2536173, type: 3}
       propertyPath: m_Name
       value: HealthBarCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 9197419732321532097, guid: 04d3665dff27b49068d78b1bd2536173, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9197419732321532099, guid: 04d3665dff27b49068d78b1bd2536173, type: 3}
       propertyPath: m_Pivot.x
@@ -531,8 +523,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 134676642788410972, guid: 04d3665dff27b49068d78b1bd2536173, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04d3665dff27b49068d78b1bd2536173, type: 3}
 --- !u!1 &5814427779934989745 stripped
 GameObject:
@@ -617,6 +608,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 742dfbee370f8470480097fee4392430, type: 3}
       propertyPath: m_Name
       value: tank with lazer cannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 742dfbee370f8470480097fee4392430, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 742dfbee370f8470480097fee4392430, type: 3}
