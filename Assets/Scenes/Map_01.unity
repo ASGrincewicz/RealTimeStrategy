@@ -679,7 +679,7 @@ GameObject:
   - component: {fileID: 722857076}
   - component: {fileID: 722857075}
   - component: {fileID: 722857074}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -891,7 +891,7 @@ GameObject:
   - component: {fileID: 954380141}
   - component: {fileID: 954380140}
   - component: {fileID: 954380139}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Obstacle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1006,7 +1006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _layerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2048
   _unitSelectionArea: {fileID: 316376303}
 --- !u!4 &1237992594
 Transform:
@@ -1038,7 +1038,7 @@ MonoBehaviour:
   _unitSelectionHandler: {fileID: 1237992593}
   _layerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2240
 --- !u!1 &1356001563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,7 +1051,7 @@ GameObject:
   - component: {fileID: 1356001567}
   - component: {fileID: 1356001566}
   - component: {fileID: 1356001565}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Obstacle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1224,7 +1224,7 @@ GameObject:
   - component: {fileID: 1684230603}
   - component: {fileID: 1684230602}
   - component: {fileID: 1684230601}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
