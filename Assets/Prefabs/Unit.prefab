@@ -435,25 +435,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2973541618542914819}
     m_Modifications:
-    - target: {fileID: 134676642788410972, guid: 04d3665dff27b49068d78b1bd2536173, type: 3}
-      propertyPath: _health
-      value: 
-      objectReference: {fileID: -4444603347800228331}
-    - target: {fileID: 9197419732169713126, guid: 04d3665dff27b49068d78b1bd2536173, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 9197419732321532097, guid: 04d3665dff27b49068d78b1bd2536173, type: 3}
       propertyPath: m_Name
       value: HealthBarCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 9197419732321532097, guid: 04d3665dff27b49068d78b1bd2536173, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 9197419732321532097, guid: 04d3665dff27b49068d78b1bd2536173, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9197419732321532099, guid: 04d3665dff27b49068d78b1bd2536173, type: 3}
       propertyPath: m_Pivot.x
@@ -539,12 +523,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9197419732785999770, guid: 04d3665dff27b49068d78b1bd2536173, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 134676642788410972, guid: 04d3665dff27b49068d78b1bd2536173, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04d3665dff27b49068d78b1bd2536173, type: 3}
 --- !u!1 &5814427779934989745 stripped
 GameObject:
