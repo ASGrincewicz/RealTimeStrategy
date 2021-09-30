@@ -1,15 +1,22 @@
 using System.Collections.Generic;
+using System;
 using Mirror;
 using UnityEngine;
 
 public class NetworkedPlayer : NetworkBehaviour
 {
-    [SerializeField] private List<Unit> _myUnits = new List<Unit>();
-    [SerializeField] private List<Building> _myBuildings = new List<Building>();
+    [SyncVar(hook = nameof(ClientHandleResourcesUpdated))]
+    private int _myResources = 500;
+    public event Action<int> ClientOnResourcesUpdated;
+
+    private List<Unit> _myUnits = new List<Unit>();
+    private List<Building> _myBuildings = new List<Building>();
     [SerializeField] private Building[] _buildings = new Building[0];
     public List<Unit> GetMyUnits() { return _myUnits; }
     public List<Building> GetMyBuildings() { return _myBuildings; }
-
+    public int GetResources() { return _myResources; }
+    [Server]
+    public void SetResources(int newResources) => _myResources = newResources;
     #region Server
     public override void OnStartServer()
     {
@@ -95,6 +102,11 @@ public class NetworkedPlayer : NetworkBehaviour
     private void AuthorityHandleBuildingSpawned(Building building) => _myBuildings.Add(building);
 
     private void AuthorityHandleBuildingDespawned(Building building) => _myBuildings.Remove(building);
+
+    private void ClientHandleResourcesUpdated(int oldResources, int newResources)
+    {
+        ClientOnResourcesUpdated?.Invoke(newResources);
+    }
 
     #endregion Client
 }

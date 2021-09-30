@@ -9,19 +9,14 @@ public class UnitSpawner : NetworkBehaviour, IPointerClickHandler
     [SerializeField] private Transform _unitSpawnPoint;
 
     #region Server
-    public override void OnStartServer()
-    {
-        _health.ServerOnDie += ServerHandleDie;
-    }
+    public override void OnStartServer() => _health.ServerOnDie += ServerHandleDeath;
 
-    public override void OnStopServer()
-    {
-        _health.ServerOnDie -= ServerHandleDie;
-    }
+    public override void OnStopServer() => _health.ServerOnDie -= ServerHandleDeath;
+
     [Server]
-    private void ServerHandleDie()
+    private void ServerHandleDeath()
     {
-       // NetworkServer.Destroy(gameObject);
+       NetworkServer.Destroy(gameObject);
     }
 
     [Command]
