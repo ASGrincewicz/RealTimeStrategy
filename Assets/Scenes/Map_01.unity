@@ -1647,10 +1647,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 218489040, guid: 685d093d3571148b58404136c3902c68, type: 3}
-      propertyPath: m_Texture
-      value: 
-      objectReference: {fileID: 8400000, guid: 8a5a0f11d5f2241afb306e47e0af580e, type: 2}
     - target: {fileID: 2160498251562315095, guid: 685d093d3571148b58404136c3902c68, type: 3}
       propertyPath: m_Name
       value: MiniMapDisplay
