@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class NetworkedPlayer : NetworkBehaviour
 {
+    [SerializeField] private Transform _cameraTransform = null;
     [SerializeField] private Building[] _buildings = new Building[0];
     [SerializeField] private LayerMask _buildingBlockMask = new LayerMask();
     [SerializeField] private float _buildingRangeLimit = 5f;
@@ -19,6 +20,7 @@ public class NetworkedPlayer : NetworkBehaviour
     public List<Building> GetMyBuildings() { return _myBuildings; }
     public int GetResources() { return _myResources; }
     public Color GetTeamColor() { return _teamColor; }
+    public Transform GetCameraTransform() { return _cameraTransform; }
 
     public bool CanPlaceBuilding(BoxCollider buildingCollider, Vector3 position)
     {
